@@ -13,18 +13,33 @@ const connection = mysql.createConnection({
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
+
+app.use(express.urlencoded({extended: false}));
   
 // Tambahkan rute untuk halaman beranda
 app.get('/',(req, res)=>{
   res.render('top.ejs')
 });
 
-app.get('/index',(req, res)=>{
+app.get('/new',(req, res)=>{
+  res.render('new.ejs')
+});
+
+app.get('/index', (req, res) => {
   connection.query(
-    'SELECT * FROM items',
+     'SELECT * FROM items',
+     (error, results) => {
+       res.render('index.ejs', {items: results});
+     }
+   );
+});
+
+app.post('/create',(req, res)=>{
+  connection.query(
+    'INSERT INTO items (name) VALUES (?)',
+    [req.body.itemName],
     (error, results) => {
-      // Teruskan object sebagai argument ke-2 res.render
-      res.render('index.ejs', {items: results});
+     res.redirect('/index')
     }
   );
 });
