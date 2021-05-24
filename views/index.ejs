@@ -8,7 +8,7 @@
   </head>
   <body>
     <header>
-      <a class="header-logo">LIST</a>
+      <a class="header-logo" href="/">LIST</a>
     </header>
     <div class="container">
       <div class="container-header">
@@ -20,31 +20,27 @@
           <span>Item</span>
         </div>
          <!-- Gunakan EJS untuk mendefinisikan constant item -->
-         <% const item = {id: 4, name: 'tomat'} %>
+        <% const items = [
+          {id: 1, name: 'kentang'},
+          {id: 2, name: 'wortel'},
+          {id: 3, name: 'bawang'}
+        ]; %> 
 
         <ul class="table-body">
-          <li>
-            <span class="id-column">1</span>
-            <span class="name-column">kentang</span>
-          </li>
-          <li>
-            <span class="id-column">2</span>
-            <span class="name-column">wortel</span>
-          </li>
-          <li>
-            <span class="id-column">3</span>
-            <span class="name-column">bawang</span>
-          </li>
-          <li>
-            <span class="id-column">
-              <!-- Tampilkan property id milik item -->
-              <%= item.id %>
-            </span>
-            <span class="name-column">
-              <!-- Tampilkan property name milik item -->
-               <%= item.name %>
-            </span>
-          </li>
+          <% items.forEach((item) => { %>
+
+            <li>
+              <span class="id-column">
+                <!-- Tampilkan property id milik item-->
+                <%= item.id %>
+              </span>
+              <span class="name-column">
+                <!-- Tampilkan property name milik item --> 
+                <%= item.name %> 
+              </span>
+            </li>
+
+          <% }); %> 
         </ul>
       </div>
     </div>
