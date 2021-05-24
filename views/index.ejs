@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <title>LIST</title>
     <link rel="stylesheet" href="/css/style.css">
-    <script src="/send_url.js"></script>
   </head>
   <body>
     <header>
@@ -19,28 +18,16 @@
           <span class="id-column">ID</span>
           <span>Item</span>
         </div>
-         <!-- Gunakan EJS untuk mendefinisikan constant item -->
-        <% const items = [
-          {id: 1, name: 'kentang'},
-          {id: 2, name: 'wortel'},
-          {id: 3, name: 'bawang'}
-        ]; %> 
 
         <ul class="table-body">
           <% items.forEach((item) => { %>
-
             <li>
-              <span class="id-column">
-                <!-- Tampilkan property id milik item-->
-                <%= item.id %>
-              </span>
-              <span class="name-column">
-                <!-- Tampilkan property name milik item --> 
-                <%= item.name %> 
-              </span>
+              <div class="item-data">
+                <span class="id-column"><%= item.id %></span>
+                <span class="name-column"><%= item.name %></span>
+              </div>
             </li>
-
-          <% }); %> 
+          <% }) %> 
         </ul>
       </div>
     </div>
